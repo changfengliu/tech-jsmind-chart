@@ -3,7 +3,7 @@ var __chartData = {
 	"format": "node_tree",
 	"data": {
 		"id": "root",
-		"topic": "前端知识体系",
+		"topic": "机器学习",
 		"children": [
 			{
 				"id": "easy",

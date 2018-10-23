@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>我的知识体系</title>
+  <link type="text/css" rel="stylesheet" href="./libs/jsmind/style/jsmind.css" />
+  <style type="text/css">
+		body{
+			margin: 0;
+		}
+    #chart{
+      width:800px;
+      height:500px;
+    }
+  </style>
+</head>
+<body>
+	<div id="chart"></div>
+	<script src="./libs/jsmind/util.js"></script>
+	<script>
+		var chartDom = document.getElementById('chart');
+		chartDom.style.width = window.innerWidth + 'px'
+		chartDom.style.height = window.innerHeight + 'px'
+	</script>
+	<script src="./libs/jsmind/js/jsmind.js"></script>
+	<script>
+		var chartName = __util.getQueryString('chart') || 'web'
+		document.write('<script src="./charts/' + chartName + '.js"><\/script\>')
+	</script>
+	<script type="text/javascript">
+    function load_jsmind(){
+      var options = {
+          container:'chart',
+          editable:false,
+          //theme:'primary'
+      }
+      jsMind.show(options,__chartData);
+    }
+    load_jsmind();
+	</script>
+</body>
+</html>

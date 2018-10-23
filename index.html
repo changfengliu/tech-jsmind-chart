@@ -1,44 +1,54 @@
-
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>知识必备</title>
-  <link type="text/css" rel="stylesheet" href="./jsmind/style/jsmind.css" />
+  <title>我的知识体系</title>
   <style type="text/css">
-		body{
-			margin: 0;
-		}
-    #chart{
-        width:800px;
-        height:500px;
+    html, body, iframe{
+      margin: 0;
+      padding: 0;
+      width:100%;
+      height: 100%;
+      border:none;
+    }
+    .main {
+      display:flex;
+      height:100%;
+    }
+    .main .index{
+      width:200px;
+      background-color:#EEE;
+    }
+    .main .chart-frame{
+      flex: 1;
     }
   </style>
+  <script src="./charts/index.js"></script>
+  <script src="./libs/vue.min.js"></script>
 </head>
 <body>
-	<div id="chart"></div>
-	<script src="./jsmind/util.js"></script>
-	<script>
-		var chartDom = document.getElementById('chart');
-		chartDom.style.width = window.innerWidth + 'px'
-		chartDom.style.height = window.innerHeight + 'px'
-	</script>
-	<script src="./jsmind/js/jsmind.js"></script>
-	<script>
-		var chartName = __util.getQueryString('chart') || 'web'
-		document.write('<script src="./charts/' + chartName + '.js"><\/script\>')
-	</script>
-	<script type="text/javascript">
-    function load_jsmind(){
-      var options = {
-          container:'chart',
-          editable:false,
-          //theme:'primary'
+	<div id="app" class="main">
+    <div class="index">
+      <ul>
+        <li v-for="item in indexList">
+          <a target="chart" :href="'./chart.html?chart=' + item['key']">{{item['name']}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chart-frame">
+      <iframe name="chart" src="chart.html"></iframe>
+    </div>
+  </div>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: function(){
+        return {
+          indexList: index
+        }
       }
-      jsMind.show(options,__chartData);
-    }
-    load_jsmind();
-	</script>
+    })
+  </script>
 </body>
 </html>
